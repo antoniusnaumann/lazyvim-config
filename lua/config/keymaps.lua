@@ -45,20 +45,20 @@ remap("v", "<A-j>", "<A-e>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 remap("v", "<A-k>", "<A-i>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- Remap next/prev
--- remap("n", "n", "k" "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
--- remap("x", "n", "k" "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
--- remap("o", "n", "k" "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
--- remap("n", "N", "K" "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
--- remap("x", "N", "K" "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
--- remap("o", "N", "K" "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+remap("n", "n", "k", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+remap("x", "n", "k", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+remap("o", "n", "k", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+remap("n", "N", "K", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+remap("x", "N", "K", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+remap("o", "N", "K", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 ------------------------------------------------------
 -- Helix-like Movement -------------------------------
 ------------------------------------------------------
-set("n", "go", "$", { desc = "Move to end of line" })
-set("n", "ge", "G", { desc = "Move to end of file" })
-set("n", "gi", "gg", { desc = "Move to start of file" })
-set("n", "gn", "0", { desc = "Move to start of line" })
+set({ "n", "v" }, "go", "$", { desc = "Move to end of line" })
+set({ "n", "v" }, "ge", "G", { desc = "Move to end of file" })
+set({ "n", "v" }, "gi", "gg", { desc = "Move to start of file" })
+set({ "n", "v" }, "gn", "0", { desc = "Move to start of line" })
 
 ------------------------------------------------------
 -- Window Navigation ---------------------------------
