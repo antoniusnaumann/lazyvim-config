@@ -7,7 +7,7 @@ local set = vim.keymap.set
 local function remap(mode, old, lhs, rhs, opts)
   opts = opts or {}
   del(mode, old)
-  set(mode, lhs, rhs)
+  set(mode, lhs, rhs, opts)
 end
 
 local function swap(mode, lhs, rhs, opts)
@@ -18,18 +18,19 @@ end
 ------------------------------------------------------
 -- Colemak -------------------------------------------
 ------------------------------------------------------
-
 -- Set Colemak movement keys
-set({ "n", "v" }, "n", "h")
-swap({ "n", "v" }, "e", "j")
-set({ "n", "v" }, "i", "k")
-swap({ "n", "v" }, "o", "l")
+set({ "n", "v" }, "n", "h", { desc = "Move left" })
+swap({ "n", "v" }, "e", "j", { desc = "Move down" })
+set({ "n", "v" }, "i", "k", { desc = "Move up" })
+swap({ "n", "v" }, "o", "l", { desc = "Move right" })
 
--- Set h as switch to normal mode
-set({ "n", "v" }, "h", "i")
+-- Set h as switch to insert mode
+set({ "n", "v" }, "h", "i", { desc = "Insert mode" })
+set({ "n", "v" }, "H", "I", { desc = "Insert mode at start of line" })
 
 -- Set k as prev/next
-set({ "n", "v" }, "k", "n")
+set({ "n", "v" }, "k", "n", { desc = "Next search result" })
+set({ "n", "v" }, "K", "N", { desc = "Prev search result" })
 
 -- Remap window navigation to Colemak movements
 set("n", "<C-n>", "<C-w>h", { desc = "Go to left window", remap = true })
@@ -46,12 +47,8 @@ remap("v", "<A-j>", "<A-e>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 remap("v", "<A-k>", "<A-i>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- Remap next/prev
-remap("n", "n", "k", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-remap("x", "n", "k", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-remap("o", "n", "k", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-remap("n", "N", "K", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-remap("x", "N", "K", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-remap("o", "N", "K", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+set({ "n", "v" }, "<C-k>", "*", { desc = "Next occurrence" })
+set({ "n", "v" }, "<C-S-k>", "#", { desc = "Prev occurrence" })
 
 ------------------------------------------------------
 -- Helix-like Movement -------------------------------
@@ -60,6 +57,7 @@ set({ "n", "v" }, "go", "$", { desc = "Move to end of line" })
 set({ "n", "v" }, "ge", "G", { desc = "Move to end of file" })
 set({ "n", "v" }, "gi", "gg", { desc = "Move to start of file" })
 set({ "n", "v" }, "gn", "0", { desc = "Move to start of line" })
+set({ "n", "v" }, "gm", "%", { desc = "Move to matching bracket" })
 
 ------------------------------------------------------
 -- Window Navigation ---------------------------------
