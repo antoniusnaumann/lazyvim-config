@@ -16,3 +16,17 @@ require("telescope").setup({
     },
   },
 })
+
+vim.api.nvim_set_hl(0, "CmpNormal", { bg = "#121519", blend = 0 })
+require("cmp").setup({
+  view = {
+    menu = {
+      winhighlight = "Normal:CmpNormal",
+    },
+  },
+  window = {
+    completion = {
+      winhighlight = "Normal:CmpNormal",
+    },
+  },
+})
